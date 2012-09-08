@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-// コメント追加
+// コピーファイルの一括リネームバッチ
 public class CpyFileRenamer {
 	public static void main(String args[]) {	
 		String extdel = "\\..*$"; // 拡張子取得用正規表現
