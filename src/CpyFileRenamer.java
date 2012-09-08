@@ -1,14 +1,13 @@
 import java.io.*;
-import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-// コピーファイルの一括リネームバッチ
+// コピーファイルのリネームバッチ
 public class CpyFileRenamer {
 	public static void main(String args[]) {	
 		String extdel = "\\..*$"; // 拡張子取得用正規表現
-		Pattern ptnExt = Pattern.compile(extdel);
+		Pattern ptnExt = Pattern.compile(extdel); // 正規表現マッチャの生成
 		
 		File[] arry = new File(".").listFiles();
 		for(File oFile : arry){
