@@ -3,11 +3,11 @@ import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-// ƒRƒs[ƒtƒ@ƒCƒ‹‚ÌƒŠƒl[ƒ€ƒoƒbƒ`
+// ã‚³ãƒ”ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒªãƒãƒ¼ãƒ ãƒãƒƒãƒ
 public class CpyFileRenamer {
 	public static void main(String args[]) {	
-		String extdel = "\\..*$"; // Šg’£ŽqŽæ“¾—p³‹K•\Œ»
-		Pattern ptnExt = Pattern.compile(extdel); // ³‹K•\Œ»ƒ}ƒbƒ`ƒƒ‚Ì¶¬
+		String extdel = "\\..*$"; // æ‹¡å¼µå­å–å¾—ç”¨æ­£è¦è¡¨ç¾
+		Pattern ptnExt = Pattern.compile(extdel); // æ­£è¦è¡¨ç¾ãƒžãƒƒãƒãƒ£ã®ç”Ÿæˆ
 		
 		File[] arry = new File(".").listFiles();
 		for(File oFile : arry){
@@ -15,36 +15,36 @@ public class CpyFileRenamer {
 			//System.out.println(oFile.getName());
 			
 			String extName = "";
-			if (m.find()) extName = m.group(0); // Šg’£Žq‘Þ”ð
-			String oldFileName = m.replaceFirst(""); // Šg’£Žqœ‹Ž
-			String newFileName = oldFileName.replaceFirst(" - ƒRƒs[.*$|^ƒRƒs[ (|\\([0-9]+\\) )` ",""); // •ÒW
+			if (m.find()) extName = m.group(0); // æ‹¡å¼µå­é€€é¿
+			String oldFileName = m.replaceFirst(""); // æ‹¡å¼µå­é™¤åŽ»
+			String newFileName = oldFileName.replaceFirst(" - ã‚³ãƒ”ãƒ¼.*$|^ã‚³ãƒ”ãƒ¼ (|\\([0-9]+\\) )ï½ž ",""); // ç·¨é›†
 			
-			// ƒtƒ@ƒCƒ‹–¼•ÏX‘ÎÛŠO‚Ìê‡‚ÍŽŸ‚Ìƒtƒ@ƒCƒ‹‚Ö
+			// ãƒ•ã‚¡ã‚¤ãƒ«åå¤‰æ›´å¯¾è±¡å¤–ã®å ´åˆã¯æ¬¡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¸
 			if (oldFileName.equals(newFileName)) continue;
 
 			System.out.println("   " + oFile.getName());
 			
-			// ƒtƒ@ƒCƒ‹–¼•ÒW
+			// ãƒ•ã‚¡ã‚¤ãƒ«åç·¨é›†
 			StringBuilder sbFileName = new StringBuilder();
 			sbFileName.append(newFileName);
 			sbFileName.append(new SimpleDateFormat("_yyyyMMddhhmmss").format(oFile.lastModified()));
 			sbFileName.append(extName);
 			newFileName = sbFileName.toString();
 			
-			// ƒtƒ@ƒCƒ‹ˆÚ“®
+			// ãƒ•ã‚¡ã‚¤ãƒ«ç§»å‹•
 			boolean isSuccess = false;
 			if (new File(newFileName).exists()) {
-				System.out.println("   Šù‚É“¯–¼‚Ìƒtƒ@ƒCƒ‹‚ª‘¶Ý‚µ‚Ü‚·B");
+				System.out.println("   æ—¢ã«åŒåã®ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¾ã™ã€‚");
 			} else {
 				try
 				{
 					oFile.renameTo(new File(newFileName));
 					isSuccess = true;
 				}catch(SecurityException e){
-					System.out.println("   ƒtƒ@ƒCƒ‹‚ÌƒŠƒl[ƒ€‚ÉŽ¸”s‚µ‚Ü‚µ‚½B");
+					System.out.println("   ãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒªãƒãƒ¼ãƒ ã«å¤±æ•—ã—ã¾ã—ãŸã€‚");
 				}
 			}
-			System.out.println((isSuccess ? "›" : "~") + ">" + sbFileName.toString());
+			System.out.println((isSuccess ? "â—‹" : "Ã—") + ">" + sbFileName.toString());
 		}		
 	}
 }
